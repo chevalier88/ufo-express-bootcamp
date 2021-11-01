@@ -1,0 +1,11 @@
+<html>
+  <head>
+    <!-- AFTER HTML loads in browser, browser will request for CSS. -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <% for(let i=0; i < allSightings.length; i+=1) { %>
+     <p><a href=/sightings/<%= i %>> Report #<%= allSightings[i].REPORT_NUMBER %> - <%= allSightings[i].STATE %>, <%= allSightings[i].YEAR %> </a> </p>
+<% } %>
+  </body>
+</html>

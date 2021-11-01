@@ -1,0 +1,11 @@
+<html>
+  <head>
+    <!-- AFTER HTML loads in browser, browser will request for CSS. -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <% for(let i=0; i < yearMenu.length; i+=1) { %>
+     <p><a href=/year-sightings/<%= yearMenu[i] %>> <%= yearMenu[i]%> </a> </p>
+<% } %>
+  </body>
+</html>
