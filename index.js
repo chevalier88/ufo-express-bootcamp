@@ -6,6 +6,8 @@ import { read, add } from './jsonFileStorage.js';
 
 const app = express();
 
+const PORT = 3006;
+
 // Set view engine
 app.set('view engine', 'ejs');
 
@@ -53,6 +55,7 @@ app.post('/sighting', (request, response) => {
     // Acknowledge recipe saved.
     // response.send('Saved sighting!');
 
+    // redirects back to new sighting index page when done.
     read('data.json', (err, data) => {
       console.log(`length of sightings data is ${data.sightings.length}`);
       const newIndex = data.sightings.length - 1;
@@ -69,7 +72,9 @@ app.get('/sighting/:index', handleSightingIndexRequest);
 
 // app.get('/year-sightings/:year', handleYearRequest);
 
-app.listen(3006);
+app.listen(PORT);
+
+console.log(`using Port Number ${PORT}`);
 
 // const handleYearRequest = (request, response) => {
 //   read('data.json', (err, data) => {

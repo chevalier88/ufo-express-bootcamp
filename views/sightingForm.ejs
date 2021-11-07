@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include('partials/head', {title: `UFO Sighting Form`}); -%>
+    <%- include('partials/head', {title: `UFO Sighting Form`, background:
+    `https://media0.giphy.com/media/MDrRewbWnLPqnheQ2a/source.gif`}); -%>
   </head>
   <body>
     <%- include('partials/navbar-header', {header: `UFO Sighting Form`,
@@ -22,13 +23,18 @@
 
         <div class="form-group">
           <label for="date_time">Date & Time</label>
-          <input
-            type="text"
-            class="form-control"
-            id="date_time"
-            name="date_time"
-            placeholder="17th June, 2021, at 7PM SGT"
-          />
+          <div class="input-group date" id="datetimepicker1">
+            <input
+              type="text"
+              class="form-control"
+              id="date_time"
+              name="date_time"
+              placeholder="17/06/1988 12:00 PM"
+            />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
         </div>
         <div class="row">
           <div class="form-group col-sm-6 col-md-6">
@@ -95,7 +101,5 @@
         </div>
       </form>
     </div>
-
-    <%- include('partials/footer') %>
   </body>
 </html>
