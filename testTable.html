@@ -13,63 +13,45 @@
     <table id="myTable">
       <tr>
         <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->
-        <th onclick="sortTable(0)">Name</th>
-        <th onclick="sortTable(1)">Country</th>
-        <th onclick="sortTable(2)">Name</th>
-        <th onclick="sortTable(3)">Country</th>
+        <th onclick="sortTableNum(0)">ID</th>
+        <th onclick="sortTableAlph(1)">Country</th>
+        <th onclick="sortTableAlph(2)">Name Again</th>
+        <th onclick="sortDate(3)">Date Time</th>
       </tr>
       <tr>
-        <td>Berglunds snabbkop</td>
+        <td>1</td>
         <td>Sweden</td>
         <td>Berglunds snabbkop</td>
-        <td>Sweden</td>
+        <td>05/02/2002 03:09:46 AM</td>
       </tr>
       <tr>
-        <td>North/South</td>
+        <td>3</td>
         <td>UK</td>
         <td>North/South</td>
-        <td>UK</td>
+        <td>11/28/1991 04:04:26 PM</td>
       </tr>
       <tr>
-        <td>Alfreds Futterkiste</td>
+        <td>5</td>
         <td>Germany</td>
         <td>Alfreds Futterkiste</td>
-        <td>Germany</td>
+        <td>05/24/1990 07:38:42 PM</td>
       </tr>
       <tr>
-        <td>Koniglich Essen</td>
+        <td>7</td>
         <td>Germany</td>
         <td>Koniglich Essen</td>
-        <td>Germany</td>
+        <td>08/14/1997 06:02:22 PM</td>
       </tr>
       <tr>
-        <td>Magazzini Alimentari Riuniti</td>
+        <td>2</td>
         <td>Italy</td>
         <td>Magazzini Alimentari Riuniti</td>
-        <td>Italy</td>
-      </tr>
-      <tr>
-        <td>Paris specialites</td>
-        <td>France</td>
-        <td>Paris specialites</td>
-        <td>France</td>
-      </tr>
-      <tr>
-        <td>Island Trading</td>
-        <td>UK</td>
-        <td>Island Trading</td>
-        <td>UK</td>
-      </tr>
-      <tr>
-        <td>Laughing Bacchus Winecellars</td>
-        <td>Canada</td>
-        <td>Laughing Bacchus Winecellars</td>
-        <td>Canada</td>
+        <td>12/08/2001 11:10:17 PM</td>
       </tr>
     </table>
 
     <script>
-      function sortTable(n) {
+      function sortTableAlph(n) {
         var table,
           rows,
           switching,
@@ -128,6 +110,81 @@
               dir = "desc";
               switching = true;
             }
+          }
+        }
+      }
+    </script>
+    <script>
+      function sortTableNum(n) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /*Make a loop that will continue until
+  no switching has been done:*/
+        while (switching) {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+    first, which contains table headers):*/
+          for (i = 1; i < rows.length - 1; i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            //check if the two rows should switch place:
+            if (Number(x.innerHTML) > Number(y.innerHTML)) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+    </script>
+    <script>
+      function sortDate(n) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /*Make a loop that will continue until
+  no switching has been done:*/
+        while (switching) {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+    first, which contains table headers):*/
+          for (i = 1; i < rows.length - 1; i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+
+            var date1 = new Date(x.innerText);
+            var date2 = new Date(y.innerText);
+            //check if the two rows should switch place:
+            if (date1 > date2) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
           }
         }
       }
