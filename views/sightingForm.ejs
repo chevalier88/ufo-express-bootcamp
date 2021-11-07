@@ -1,28 +1,101 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <%- include('partials/head', {title: `UFO Sighting Form`}); -%>
+  </head>
   <body>
-    <form action="/sighting" method="POST">
-      <label for="text">Write what you witnessed here:</label><br />
-      <input type="text" id="text" name="text" /><br />
+    <%- include('partials/navbar-header', {header: `UFO Sighting Form`,
+    subheader: `Submit Your Sighting`}); -%>
 
-      <label for="date_time">Date and Time:</label><br />
-      <input type="text" id="date_time" name="date_time" /><br />
+    <div class="container" id="form-container" style="max-width: 600px">
+      <form action="/sighting" method="POST">
+        <div class="form-group">
+          <label for="text">What Did You Witness?</label>
+          <textarea
+            class="form-control"
+            id="text"
+            rows="3"
+            name="text"
+            placeholder="Flying otter, omg it's like we're getting invaded halp"
+          ></textarea>
+        </div>
 
-      <label for="city">City:</label><br />
-      <input type="text" id="city" name="city" /><br />
+        <div class="form-group">
+          <label for="date_time">Date & Time</label>
+          <input
+            type="text"
+            class="form-control"
+            id="date_time"
+            name="date_time"
+            placeholder="17th June, 2021, at 7PM SGT"
+          />
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="city">City:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              name="city"
+              placeholder="Singapore"
+            />
+          </div>
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="state">State (if none, type 'N/A'):</label>
+            <input
+              type="text"
+              class="form-control"
+              id="state"
+              name="state"
+              placeholder="N/A"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="shape">UFO Shape (if any):</label>
+            <input
+              type="text"
+              class="form-control"
+              id="shape"
+              name="shape"
+              placeholder="Otter-shaped"
+            />
+          </div>
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="duration">Sighting Duration:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="duration"
+              name="duration"
+              placeholder="101 mins"
+            />
+          </div>
+        </div>
 
-      <label for="state">State (if applicable, otherwise put N/A):</label><br />
-      <input type="text" id="state" name="state" /><br />
+        <div class="form-group">
+          <label for="summary">Summarize Your Sighting:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="summary"
+            name="summary"
+            placeholder="Otter-shaped vehicle spotted over Jurong"
+          />
+        </div>
+        <div class="col text-center">
+          <input
+            class="btn btn-primary btn-lg text-center"
+            id="submit-button"
+            type="submit"
+            value="Submit"
+          />
+        </div>
+      </form>
+    </div>
 
-      <label for="shape">UFO Shape (if any):</label><br />
-      <input type="text" id="shape" name="shape" /><br />
-
-      <label for="duration">Sighting Duration:</label><br />
-      <input type="text" id="duration" name="duration" /><br />
-
-      <label for="summary">Sighting Summary:</label><br />
-      <input type="text" id="summary" name="summary" /><br />
-
-      <input type="submit" value="Submit" />
-    </form>
+    <%- include('partials/footer') %>
   </body>
 </html>

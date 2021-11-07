@@ -1,9 +1,47 @@
 body {
-  padding-top: 56px;
+  background-color: black;
 }
 
-.header {
-  padding: 20px;
-  margin-bottom: 20px;
-  background-color: rgb(19, 140, 205);
+.jumbotron {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#jumbotron-1 {
+  background-image: url("./mytunes-master/img/section-bg.jpg");
+}
+
+#jumbotron-2 {
+  /* background-color: #252529; */
+  background-image: url("https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_20/3475469/210517-ufo-corbell-2x1-mn-1540.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: darken;
+  height: 25vh;
+}
+
+#jumbotron-index-summary {
+  background-color: black;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+#jumbotron-index-report {
+  background-color: black;
+  padding-top: 5px;
+  margin-top: 5px;
+}
+
+#form-container {
+  color: white;
+  max-width: 100%;
+}
+
+#index-container {
+  color: white;
+}
+
+#ufo-footer {
+  max-width: 100%;
+  height: auto;
 }

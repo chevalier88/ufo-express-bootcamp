@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('partials/head', {title: `UFO Sighting, Index
+    ${sightingIndex.index}`}); -%> 
+  <body>
+    <%- include('partials/navbar-header', {header: `Sighting Report`,
+    subheader: `Index ${sightingIndex.index}`}); -%>
+    <br><br>
+   
+    <div class="container" id="index-container" style="max-width: 600px">
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          Date & Time: <%= sightingIndex.info.date_time %>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          City: <%= sightingIndex.info.city %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          State: <%= sightingIndex.info.state %>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          Shape: <%= sightingIndex.info.shape %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-6">
+          Duration: <%= sightingIndex.info.duration %>
+        </div>
+      </div>
+    </div>
+
+    <div class = "container jumbotron vertical-center" style="max-width: 600px" id = "jumbotron-index-summary">
+      <strong class = "container text-center">Summary:</strong>
+      <p><%= sightingIndex.info.summary%></p>
+    </div> 
+    <div class = "container jumbotron vertical-center" style="max-width: 600px" id = "jumbotron-index-report">
+      <strong class = "container text-center">Reported Events:</strong>
+      <p><%= sightingIndex.info.text %></p>
+    </div> 
+  </body>
+</html>
