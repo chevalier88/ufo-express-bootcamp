@@ -12,8 +12,6 @@ body {
     1px 1px 0 #000;
 }
 
-#jumbotron-1 {
-}
 
 /* #jumbotron-2 {
   /* background-color: #252529; */
@@ -53,7 +51,17 @@ body {
   background-color: black;
 }
 
+#fa-btn-group {
+  display:flex;
+}
+
 .button-row{
   display: inline-block;
   vertical-align: top;
+}
+
+#all-shapes{
+  background-color: black;
+  color: black;
+  text-shadow: none;
 }

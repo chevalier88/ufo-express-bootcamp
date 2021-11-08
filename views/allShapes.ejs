@@ -7,23 +7,25 @@
   <body>
     <%- include('partials/navbar-header', {header: `List of Sightings by Shape`,
     subheader: `Click the Dropdown Menu`}); -%>
-    <div class="row">
-      <div class="col-md-12 school-options-dropdown text-center">
-        <div class="dropdown btn-group">
-          <button
-            class="btn btn-primary btn-lg dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-          >
-            Choose a Shape
-            <span class="caret"></span>
-          </button>
+    <div class="jumbotron container-fluid" id="all-shapes">
+      <div class="row">
+        <div class="col-md-12 school-options-dropdown text-center">
+          <div class="dropdown btn-group">
+            <button
+              class="btn btn-primary btn-lg dropdown-toggle"
+              type="button"
+              data-toggle="dropdown"
+            >
+              Choose a Shape
+              <span class="caret"></span>
+            </button>
 
-          <ul class="dropdown-menu">
-            <% shapes.forEach((shape) => { %>
-            <li><a href="/shapes/<%= shape%>"><%= shape%></a></li>
-            <% }); %>
-          </ul>
+            <ul class="dropdown-menu">
+              <% shapes.forEach((shape) => { %>
+              <li><a href="/shapes/<%= shape%>"><%= shape%></a></li>
+              <% }); %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
