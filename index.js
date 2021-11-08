@@ -57,6 +57,15 @@ function handleAllSightings(request, response) {
   });
 }
 
+function handleShapes(request, response) {
+  // Obtain data to inject into EJS template
+  // data must be in the form of an object
+  read('data.json', (err, data) => {
+    const content = { allSightings: data.sightings };
+    response.render('allShapes', content);
+  });
+}
+
 // Render the form to input new recipes
 app.get('/sighting', (request, response) => {
   response.render('sightingForm');
@@ -116,6 +125,8 @@ app.delete('/sighting/:index', (request, response) => {
     });
   });
 });
+
+app.get('/shapes', handleShapes);
 
 app.listen(PORT);
 

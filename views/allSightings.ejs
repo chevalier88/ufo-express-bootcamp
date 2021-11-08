@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include('partials/head', {title: `All Sightings`, background: `https://thumbs.gfycat.com/BitesizedUnhealthyGuanaco-size_restricted.gif`}); -%> 
+    <%- include('partials/head', {title: `All Sightings`, background:
+    `https://thumbs.gfycat.com/BitesizedUnhealthyGuanaco-size_restricted.gif`});
+    -%>
 
     <script>
       function sortTableAlph(n) {
@@ -139,17 +141,16 @@
         }
       }
     </script>
+  </head>
   <body>
-    <%- include('partials/navbar-header', {header: `All Sightings`,
-    subheader: `Total No. of Sightings: ${allSightings.length}`}); -%>
+    <%- include('partials/navbar-header', {header: `All Sightings`, subheader:
+    `Total No. of Sightings: ${allSightings.length}`}); -%>
 
-
-
-    <div class="container" style= "max-width: 600px">                                                                             
-      <div class="table-responsive">          
-        <table class="table table-hover sortable" id = "myTable">
+    <div class="container" style="max-width: 600px">
+      <div class="table-responsive">
+        <table class="table table-hover sortable" id="myTable">
           <thead>
-            <tr id = "table-sightings-header" >
+            <tr id="table-sightings-header">
               <th onclick="sortTableNum(0)">
                 #
                 <i class="fa fa-long-arrow-down"></i>
@@ -160,55 +161,60 @@
               </th>
               <th onclick="sortTableAlph(2)">
                 Shape
-                <i class="fa fa-arrows-v"></i> 
+                <i class="fa fa-arrows-v"></i>
               </th>
               <th onclick="sortTableAlph(3)">
                 City
-                <i class="fa fa-arrows-v"></i> 
+                <i class="fa fa-arrows-v"></i>
               </th>
               <th>Link</th>
               <th>Edit/Delete</th>
             </tr>
           </thead>
-          <tbody id = "table-sightings-rows" >
+          <tbody id="table-sightings-rows">
             <!-- Create an <tr> element for each index in allSightings -->
             <!-- adapted from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach -->
             <% allSightings.forEach((element, index) => { %>
-              <tr>
-                <td><%= index %></td>
-                <td><%= element.date_time %></td>
-                <td><%= element.shape %></td>
-                <td><%= element.city %></td>
-                <td>
-                  <a href="/sighting/<%= index %>">
-                    <div>
-                      <i class="fa fa-link" aria-hidden="true"></i>
-                    </div>
-                  </a>
-                </td>
-                <td style='white-space: nowrap'>    
-                  <div class="btn-group" role="group" aria-label="Basic example">
-                    <button
-                      class="btn btn-primary btn-sm text-center"
-                      type = "button"
-                      onclick = "location.href=`/sighting/<%= index%>/edit`"
-                    >
-                      <i class="fa fa-pencil-square-o" aria-hidden="true">
-                      </i>
-                    </button>
-                    <form action="/sighting/<%= index %>?_method=DELETE" method="POST" id = "delete-form">
-                    </form>
-                    <button class="btn btn-danger btn-sm text-center" type="submit" form = "delete-form">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
+            <tr>
+              <td><%= index %></td>
+              <td><%= element.date_time %></td>
+              <td><%= element.shape %></td>
+              <td><%= element.city %></td>
+              <td>
+                <a href="/sighting/<%= index %>">
+                  <div>
+                    <i class="fa fa-link" aria-hidden="true"></i>
                   </div>
-                </td>
-              </tr>
+                </a>
+              </td>
+              <td style="white-space: nowrap">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button
+                    class="btn btn-primary btn-sm text-center"
+                    type="button"
+                    onclick="location.href=`/sighting/<%= index%>/edit`"
+                  >
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"> </i>
+                  </button>
+                  <form
+                    action="/sighting/<%= index %>?_method=DELETE"
+                    method="POST"
+                    id="delete-form"
+                  ></form>
+                  <button
+                    class="btn btn-danger btn-sm text-center"
+                    type="submit"
+                    form="delete-form"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
             <% }); %>
           </tbody>
         </table>
       </div>
     </div>
-    
   </body>
 </html>

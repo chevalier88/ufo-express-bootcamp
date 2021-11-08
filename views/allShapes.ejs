@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <%- include('partials/head', {title: `Sightings by Shape`, background:
+    `https://media-cldnry.s-nbcnews.com/image/upload/newscms/2021_20/3475469/210517-ufo-corbell-2x1-mn-1540.gif`});
+    -%>
+  </head>
+  <body>
+    <%- include('partials/navbar-header', {header: `List of Sightings by Shape`,
+    subheader: `Click the Dropdown Menu`}); -%>
+    <div class="row">
+      <div class="col-md-12 school-options-dropdown text-center">
+        <div class="dropdown btn-group">
+          <button
+            class="btn btn-primary btn-lg dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+          >
+            Choose a Shape
+            <span class="caret"></span>
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><a href="#">Add your school</a></li>
+            <li><a href="#">Hello</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
