@@ -20,8 +20,9 @@
           </button>
 
           <ul class="dropdown-menu">
-            <li><a href="#">Add your school</a></li>
-            <li><a href="#">Hello</a></li>
+            <% shapes.forEach((shape) => { %>
+            <li><a href="/shapes/<%= shape%>"><%= shape%></a></li>
+            <% }); %>
           </ul>
         </div>
       </div>

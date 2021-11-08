@@ -61,12 +61,71 @@ function handleShapes(request, response) {
   // Obtain data to inject into EJS template
   // data must be in the form of an object
   read('data.json', (err, data) => {
-    const content = { allSightings: data.sightings };
-    response.render('allShapes', content);
+    const content = data.sightings;
+    const allShapes = [];
+
+    for (const i in content) {
+      const shapeEntry = data.sightings[i].shape;
+
+      if (typeof (shapeEntry) === 'string') {
+        console.log(shapeEntry);
+        allShapes.push(shapeEntry);
+      }
+    }
+    // we also need the shapes to be unique, so we use Set to return a unique array
+    const uniqueShapes = [...new Set(allShapes)];
+
+    console.log(uniqueShapes);
+    const shapedContent = { shapes: uniqueShapes };
+    response.render('allShapes', shapedContent);
   });
 }
 
-// Render the form to input new recipes
+function handleShapeCategory(request, response) {
+  // Obtain data to inject into EJS template
+  // data must be in the form of an object
+  read('data.json', (err, data) => {
+    const content = data.sightings;
+    const { shape } = request.params;
+
+    const filteredShapeList = content.filter((item) => item.shape === shape);
+    console.log(filteredShapeList);
+
+    const filteredShapeContent = { shapeCat: shape, filteredList: filteredShapeList };
+
+    response.render('shapeCategory', filteredShapeContent);
+  });
+}
+
+function handleShapeCategoryIndex(request, response) {
+  // Obtain data to inject into EJS template
+  // data must be in the form of an object
+  read('data.json', (err, data) => {
+    const content = data.sightings;
+    const indexNumber = request.params.index;
+    const { shape } = request.params;
+
+    console.log('reading request.params...');
+    console.log(request.params);
+
+    const filteredShapeList = content.filter((item) => item.shape === shape);
+    console.log('listing the shape category...');
+    console.log(filteredShapeList);
+
+    console.log(`shape is ${shape}`);
+    console.log(`index is ${indexNumber}`);
+
+    const contentFiltered = {
+      sightingIndex: {
+        index: indexNumber,
+        info: filteredShapeList[indexNumber],
+      },
+    };
+
+    response.render('sightingIndex', contentFiltered);
+  });
+}
+
 app.get('/sighting', (request, response) => {
   response.render('sightingForm');
 });
@@ -127,6 +186,10 @@ app.delete('/sighting/:index', (request, response) => {
 });
 
 app.get('/shapes', handleShapes);
+
+app.get('/shapes/:shape', handleShapeCategory);
+
+app.get('/shapes/:shape/:index', handleShapeCategoryIndex);
 
 app.listen(PORT);
 
