@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <%- include('partials/head', {title: `Edit Sighting, Index
+    ${editIndex.index}`, background:
+    `https://cbsnews2.cbsistatic.com/hub/i/2020/04/27/b8a693db-e066-493a-9c38-97390f0bef11/ufo2.gif`});
+    -%>
+  </head>
+  <body>
+    <%- include('partials/navbar-header', {header: `Edit Sighting`, subheader:
+    `Index ${editIndex.index}`}); -%>
+    <div class="container" id="form-container" style="max-width: 600px">
+      <form
+        action="/sighting/<%= editIndex.index %>/edit?_method=PUT"
+        method="POST"
+      >
+        <div class="form-group">
+          <label for="text">What Did You Witness?</label>
+          <textarea class="form-control" id="text" rows="3" name="text">
+<%= editIndex.info.text %>
+          </textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="date_time">Date & Time</label>
+          <div class="input-group date" id="datetimepicker1">
+            <input
+              type="text"
+              class="form-control"
+              id="date_time"
+              name="date_time"
+              value="<%= editIndex.info.date_time %>"
+            />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="city">City:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              name="city"
+              value="<%= editIndex.info.city %>"
+            />
+          </div>
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="state">State (if none, type 'N/A'):</label>
+            <input
+              type="text"
+              class="form-control"
+              id="state"
+              name="state"
+              value="<%= editIndex.info.state %>"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="shape">UFO Shape (if any):</label>
+            <input
+              type="text"
+              class="form-control"
+              id="shape"
+              name="shape"
+              value="<%= editIndex.info.shape %>"
+            />
+          </div>
+          <div class="form-group col-sm-6 col-md-6">
+            <label for="duration">Sighting Duration:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="duration"
+              name="duration"
+              value="<%= editIndex.info.duration %>"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="summary">Summarize Your Sighting:</label>
+          <textarea class="form-control" id="summary" rows="2" name="summary">
+<%= editIndex.info.summary %>
+          </textarea>
+        </div>
+        <div class="col text-center">
+          <input
+            class="btn btn-primary btn-lg text-center"
+            id="submit-button"
+            type="submit"
+            value="Submit"
+          />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

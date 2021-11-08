@@ -2,7 +2,8 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 import express from 'express';
-import { read, add } from './jsonFileStorage.js';
+import methodOverride from 'method-override';
+import { read, add, write } from './jsonFileStorage.js';
 
 const app = express();
 
@@ -13,8 +14,12 @@ app.set('view engine', 'ejs');
 
 /* We bind request-processing middleware like express.urlencoded to Express before our routes. This configures Express to process requests using that middleware before we handle those requests in our routes */
 app.use(express.urlencoded({ extended: false }));
+
 // we need this line to tell EJS where to look for static assets like gifs and imgs
 app.use(express.static('public'));
+
+// Override POST requests with query param ?_method=PUT to be PUT requests
+app.use(methodOverride('_method'));
 
 const handleSightingIndexRequest = (request, response) => {
   read('data.json', (err, data) => {
@@ -26,6 +31,19 @@ const handleSightingIndexRequest = (request, response) => {
       },
     };
     response.render('sightingIndex', content);
+  });
+};
+
+const handleEditRequest = (request, response) => {
+  read('data.json', (err, data) => {
+    const indexNumber = request.params.index;
+    const content = {
+      editIndex: {
+        index: indexNumber,
+        info: data.sightings[indexNumber],
+      },
+    };
+    response.render('editIndex', content);
   });
 };
 
@@ -68,9 +86,36 @@ app.get('/', handleAllSightings);
 
 app.get('/sighting/:index', handleSightingIndexRequest);
 
-// app.get('/year-sightings', handleYearIndex);
+app.get('/sighting/:index/edit', handleEditRequest);
 
-// app.get('/year-sightings/:year', handleYearRequest);
+// edits content of data.json
+app.put('/sighting/:index/edit', (request, response) => {
+  const { index } = request.params;
+
+  read('data.json', (err, data) => {
+    if (err) {
+      console.log('read error', err);
+    }
+
+    data.sightings[index] = request.body;
+
+    write('data.json', data, () => {
+      console.log('file changed');
+      response.redirect(`/sighting/${index}`);
+    });
+  });
+});
+
+app.delete('/sighting/:index', (request, response) => {
+  // Remove element from DB at given index
+  const { index } = request.params;
+  read('data.json', (err, data) => {
+    data.sightings.splice(index, 1);
+    write('data.json', data, (err) => {
+      response.redirect('/');
+    });
+  });
+});
 
 app.listen(PORT);
 
