@@ -3,6 +3,7 @@
 /* eslint-disable no-restricted-syntax */
 import express from 'express';
 import methodOverride from 'method-override';
+import cookieParser from 'cookie-parser';
 import { read, add, write } from './jsonFileStorage.js';
 
 const app = express();
@@ -21,13 +22,20 @@ app.use(express.static('public'));
 // Override POST requests with query param ?_method=PUT to be PUT requests
 app.use(methodOverride('_method'));
 
+// bind the Cookie Parser middleware to our Express app like in the following code snippet.
+app.use(cookieParser());
+
 const handleSightingIndexRequest = (request, response) => {
   read('data.json', (err, data) => {
     const indexNumber = request.params.index;
+    const cookieStatus = 0;
+    // request.headers.cookie;
+    console.log(cookieStatus);
     const content = {
       sightingIndex: {
         index: indexNumber,
         info: data.sightings[indexNumber],
+        cookie: cookieStatus,
       },
     };
     response.render('sightingIndex', content);
@@ -190,6 +198,16 @@ app.get('/shapes', handleShapes);
 app.get('/shapes/:shape', handleShapeCategory);
 
 app.get('/shapes/:shape/:index', handleShapeCategoryIndex);
+
+app.get('/sighting/:index/favourite', (request, response) => {
+  const favouriteIndex = request.params.index;
+
+  response.cookie('favourited', favouriteIndex);
+  console.log(`favourite cookie set with Sighting ${favouriteIndex}`);
+  response.redirect(`/sighting/${favouriteIndex}`);
+  // console.log(request.headers);
+  console.log(request.headers.cookie);
+});
 
 app.listen(PORT);
 

@@ -55,6 +55,10 @@ body {
   display:flex;
 }
 
+#fa-btn-group-2 {
+  display:flex;
+}
+
 .button-row{
   display: inline-block;
   vertical-align: top;

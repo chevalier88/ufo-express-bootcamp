@@ -9,9 +9,18 @@
     <br><br>
    
     <div class="container" id="index-container" style="max-width: 600px">
+      <!-- Only show this message if there's a cookie --> 
+      <%if (typeof(sightingIndex.cookie) !== "number") { %>
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            Favourited: YES!
+          </div>
+        </div>
+      <% } %>
+     
       <div class="row">
         <div class="col-sm-6 col-md-6">
-          Date & Time: <%= sightingIndex.info.date_time %>
+          Sighting Date & Time: <%= sightingIndex.info.date_time %>
         </div>
         <div class="col-sm-6 col-md-6">
           City: <%= sightingIndex.info.city %>
@@ -28,6 +37,9 @@
       <div class="row">
         <div class="col-sm-6 col-md-6">
           Duration: <%= sightingIndex.info.duration %>
+        </div>
+        <div class="col-sm-6 col-md-6">
+          Report Submitted: <%= sightingIndex.info.creation_time %>
         </div>
       </div>
     </div>
@@ -57,5 +69,6 @@
         </button>
       </div>
     </div>
+    <%- include('partials/footer'); -%>
   </body>
 </html>
