@@ -3,6 +3,19 @@
   <head>
     <%- include('partials/head', {title: `UFO Sighting Form`, background:
     `https://media0.giphy.com/media/MDrRewbWnLPqnheQ2a/source.gif`}); -%>
+
+    <!-- adapted from https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_html_attr_set and 
+    https://stackoverflow.com/questions/28203140/how-to-make-todays-date-default-value-in-bootstrap-date-input/28203274-->
+    <script>
+      $(document).ready(function () {
+        var today = Date();
+        $("#creation_time").attr("value", today);
+        $("#submit-button").click(function () {
+          var today = Date();
+          $("#creation_time").attr("value", today);
+        });
+      });
+    </script>
   </head>
   <body>
     <%- include('partials/navbar-header', {header: `UFO Sighting Form`,
@@ -22,7 +35,7 @@
         </div>
 
         <div class="form-group">
-          <label for="date_time">Date & Time</label>
+          <label for="date_time">Sighting Date & Time</label>
           <div class="input-group date" id="datetimepicker1">
             <input
               type="text"
@@ -90,6 +103,20 @@
             name="summary"
             placeholder="Otter-shaped vehicle spotted over Jurong"
           />
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12 col-md-12">
+            <label for="creation_time"
+              >Report Creation Date & Time (auto-generated):</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="creation_time"
+              name="creation_time"
+              value=""
+            />
+          </div>
         </div>
         <div class="col text-center">
           <input

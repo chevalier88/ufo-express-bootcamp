@@ -105,6 +105,10 @@ function handleShapeCategory(request, response) {
   });
 }
 
+function handleHomepage(request, response) {
+  response.render('home');
+}
+
 function handleShapeCategoryIndex(request, response) {
   // Obtain data to inject into EJS template
   // data must be in the form of an object
@@ -208,6 +212,8 @@ app.get('/sighting/:index/favourite', (request, response) => {
   // console.log(request.headers);
   console.log(request.headers.cookie);
 });
+
+app.get('/home', handleHomepage);
 
 app.listen(PORT);
 
