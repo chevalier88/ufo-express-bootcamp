@@ -143,9 +143,7 @@ app.get('/sighting', (request, response) => {
 });
 
 app.post('/sighting', (request, response) => {
-  // Add new recipe data in request.body to recipes array in data.json.
-
-  add('data.json', 'sightings', request.body, (err) => {
+  setTimeout(() => { add('data.json', 'sightings', request.body, (err) => {
     if (err) {
       response.status(500).send('DB write error.');
       return;
@@ -157,9 +155,11 @@ app.post('/sighting', (request, response) => {
     read('data.json', (err, data) => {
       console.log(`length of sightings data is ${data.sightings.length}`);
       const newIndex = data.sightings.length - 1;
+
       response.redirect(`/sighting/${newIndex}`);
     });
-  });
+  }); }, 5000);
+  // Add new recipe data in request.body to recipes array in data.json.
 });
 
 app.get('/', handleAllSightings);

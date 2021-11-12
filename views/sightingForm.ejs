@@ -7,12 +7,28 @@
     <!-- adapted from https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_html_attr_set and 
     https://stackoverflow.com/questions/28203140/how-to-make-todays-date-default-value-in-bootstrap-date-input/28203274-->
     <script>
+      var today = Date();
+
       $(document).ready(function () {
-        var today = Date();
         $("#creation_time").attr("value", today);
         $("#submit-button").click(function () {
-          var today = Date();
           $("#creation_time").attr("value", today);
+          // var text = $("#text").serialize(); //  Serialize  form  Data
+          // $("#div2").text("The  Serialized  values  are  :" + text);
+
+          const message = $("[name = text]").val();
+          if (message == "") {
+          } else {
+            $.ajax({
+              url: "/Users/grahamlim/Documents/bootcamp/projects/ufo-express-bootcamp/public/summarizer.py",
+              method: "post",
+              data: { message_py: message },
+              dataType: "text",
+              success: function (data) {
+                alert(data);
+              },
+            });
+          }
         });
       });
     </script>
@@ -126,6 +142,7 @@
             value="Submit"
           />
         </div>
+        <div id="div2"></div>
       </form>
     </div>
     <%- include('partials/footer'); -%>
