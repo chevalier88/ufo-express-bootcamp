@@ -1,12 +1,20 @@
-#from adapting https://huggingface.co/transformers/model_doc/t5.html
-print "Content-type: text/html\n\n";
+# from adapting https://huggingface.co/transformers/model_doc/t5.html
+#!/usr/bin/env python
+# simple.cgi  
 
-import cgi
-form = cgi.FieldStorage()
+import cgitb 
+cgitb.enable() 
+import time
+print "Content-type: text/html"  #this part is important to tell the browser that output is html text.
+print  
+print time.strftime('%Y-%m-%d %X', time.localtime() )
 
-message = form.getvalue("message_py")
+# import cgi
+# form = cgi.FieldStorage()
 
-print (f'{message} from python')
+# message = form.getvalue("message_py")
+
+# print (f'{message} from python')
 
 # import torch
 # import sys

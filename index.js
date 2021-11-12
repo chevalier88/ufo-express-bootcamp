@@ -158,7 +158,7 @@ app.post('/sighting', (request, response) => {
 
       response.redirect(`/sighting/${newIndex}`);
     });
-  }); }, 5000);
+  }); }, 2000);
   // Add new recipe data in request.body to recipes array in data.json.
 });
 

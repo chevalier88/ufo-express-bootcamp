@@ -4,18 +4,40 @@
     ${editIndex.index}`, background:
     `https://cbsnews2.cbsistatic.com/hub/i/2020/04/27/b8a693db-e066-493a-9c38-97390f0bef11/ufo2.gif`});
     -%>
+    <script>
+      function validateForm() {
+        var elements = document.getElementById("my-form").elements;
+
+        for (var i = 0, element; (element = elements[i++]); ) {
+          if (element.type === "text" && element.value === "") {
+            console.log("You can't leave a field empty!");
+            alert("Field must be filled out");
+            return False;
+          }
+        }
+      }
+    </script>
   </head>
+
   <body>
     <%- include('partials/navbar-header', {header: `Edit Sighting`, subheader:
     `Index ${editIndex.index}`}); -%>
     <div class="container" id="form-container" style="max-width: 600px">
       <form
+        name="editForm"
         action="/sighting/<%= editIndex.index %>/edit?_method=PUT"
+        onsubmit="return validateForm()"
         method="POST"
       >
         <div class="form-group">
           <label for="text">What Did You Witness?</label>
-          <textarea class="form-control" id="text" rows="3" name="text">
+          <textarea
+            class="form-control"
+            id="text"
+            rows="3"
+            name="text"
+            required
+          >
 <%= editIndex.info.text %>
           </textarea>
         </div>
@@ -29,6 +51,7 @@
               id="date_time"
               name="date_time"
               value="<%= editIndex.info.date_time %>"
+              required
             />
             <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
@@ -44,6 +67,7 @@
               id="city"
               name="city"
               value="<%= editIndex.info.city %>"
+              required
             />
           </div>
           <div class="form-group col-sm-6 col-md-6">
@@ -54,6 +78,7 @@
               id="state"
               name="state"
               value="<%= editIndex.info.state %>"
+              required
             />
           </div>
         </div>
@@ -66,6 +91,7 @@
               id="shape"
               name="shape"
               value="<%= editIndex.info.shape %>"
+              required
             />
           </div>
           <div class="form-group col-sm-6 col-md-6">
@@ -76,13 +102,20 @@
               id="duration"
               name="duration"
               value="<%= editIndex.info.duration %>"
+              required
             />
           </div>
         </div>
 
         <div class="form-group">
           <label for="summary">Summarize Your Sighting:</label>
-          <textarea class="form-control" id="summary" rows="2" name="summary">
+          <textarea
+            class="form-control"
+            id="summary"
+            rows="2"
+            name="summary"
+            required
+          >
 <%= editIndex.info.summary %>
           </textarea>
         </div>
@@ -95,6 +128,7 @@
               id="creation_time"
               name="creation_time"
               value="<%= editIndex.info.creation_time %>"
+              required
             />
           </div>
         </div>
